@@ -1,7 +1,6 @@
 import os
 import youtube_dl
 from pytube import YouTube
-from pydub import AudioSegment as convert
 
 def downloadMusic(link, name):
 
