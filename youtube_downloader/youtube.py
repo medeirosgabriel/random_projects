@@ -1,13 +1,17 @@
 import os
 import youtube_dl
+from pytube import YouTube
+from pydub import AudioSegment as convert
 
-def download(link, name):
+def downloadMusic(link, name):
 
-    finalName = "{0}.{1}".format(name, "mp3")
+    directory = "./music/"
+
+    download_directory =  directory + "{0}.{1}".format(name, "mp3")
 
     ydl_opts = {
         'format': 'bestaudio/best',
-        'outtmpl': finalName,
+        'outtmpl': download_directory,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -21,3 +25,8 @@ def download(link, name):
             ydl.download(filenames)
     except:
         os.system("clear")
+
+def downloadVideo(link, name):
+    yt = YouTube(link)
+    video = yt.streams.get_highest_resolution()
+    video.download('./video/') 
