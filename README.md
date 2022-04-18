@@ -7,3 +7,7 @@
     - ## Chat With Sockets
     - ## Interface: Tkinter
     - ## Libraries: socket and threading
+- ## **email_project**:
+    - ## App To Send Emails
+    - ## Interface: Tkinter
+    - ## Libraries: smtplib
