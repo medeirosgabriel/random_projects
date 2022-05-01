@@ -11,3 +11,7 @@
     - ## App To Send Emails
     - ## Interface: Tkinter
     - ## Libraries: smtplib
+- ## **email_project_II**:
+    - ## App To Send Emails
+    - ## Interface: Tkinter
+    - ## Libraries: smtplib and email.mime
