@@ -15,3 +15,5 @@
     - ## App To Send Emails
     - ## Interface: Tkinter
     - ## Libraries: smtplib and email.mime
+- ## **binance_stream**:
+    - ## Consume binance stream data and make it available on a local port
