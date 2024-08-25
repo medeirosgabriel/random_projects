@@ -2,7 +2,7 @@
 - ## **youtube_downloader**:
     - ## Download YouTube Musics/Videos
     - ## Interface: Tkinter
-    - ## Download Libraries: pytube and youtube_dl
+    - ## Download Libraries: yt-dlp
 - ## **chat**:
     - ## Chat With Sockets
     - ## Interface: Tkinter

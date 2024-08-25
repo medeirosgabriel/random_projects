@@ -97,13 +97,9 @@ def myClickVideo():
 
     row_index += 1
 
-    '''
     thread = DownloadThread(url, name, downloadVideo)
     threads.append(thread)
     thread.start()
-    '''
-
-    downloadVideo(url, name)
 
     e1.delete(0, 'end')
     e2.delete(0, 'end')
