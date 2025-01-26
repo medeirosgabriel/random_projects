@@ -13,7 +13,6 @@ root.columnconfigure(2, weight=1)
 
 root.title('YouTube Downloader')
 
-
 image = Frame(root)
 image.grid(row=0, column=1)
 
@@ -29,31 +28,34 @@ img = ImageTk.PhotoImage(img)
 Label(
     image, 
     image = img
-).grid(column=0, row=0, sticky="nsew", padx=2, pady=2)
-
+).grid(column=0, row=0, sticky="nsew", padx=10, pady=2)
 
 Label (
     contents, 
     text="YouTube Video URL: ", 
     font=('Aerial 15 bold')
-).grid(column=0, row=1, sticky=W, padx=2, pady=2)
+).grid(column=0, row=1, sticky=W, padx=10, pady=2)
 
 e1 = Entry(contents, width=50)
-e1.grid(column=1, row=1, sticky=W, padx=2, pady=2)
+e1.grid(column=1, row=1, sticky=W, padx=10, pady=2)
 
 Label (
     contents, 
     text="Music/Video Name: ", 
     font=('Aerial 15 bold')
-).grid(column=0, row=2, sticky=W, padx=2, pady=2)
+).grid(column=0, row=2, sticky=W, padx=10, pady=2)
 
 e2 = Entry(contents, width=50)
-e2.grid(column=1, row=2, sticky=W, padx=2, pady=2)
+e2.grid(column=1, row=2, sticky=W, padx=10, pady=2)
 
-row_index = 5
-threads = []
+# =========== LISTBOX ==========
+
+my_listbox = Listbox(contents)
+my_listbox.grid(row=5, columnspan=2, sticky='nsew', padx=10, pady=2)
 
 # ========== DOWNLOAD ==========
+
+threads = []
 
 class DownloadThread(Thread):
     def __init__(self,url,name,download):
@@ -65,30 +67,17 @@ class DownloadThread(Thread):
     def run(self):
         self.download(self.url, self.name)
 
-
 def myClickMusic():
 
-    global row_index, threads
+    global threads
     global e1, e2
 
     url = e1.get()
     name = e2.get()
 
-    msg = "Audio - Youtube ID: " + url.split("=")[1]
-    Label (
-        contents, 
-        text=msg,
-        font=('Aerial 10 bold')
-    ).grid(column=0, row=row_index, sticky=W, padx=2, pady=2)
-
-    msg = "Name: " + name
-    Label (
-        contents, 
-        text=msg,
-        font=('Aerial 10 bold')
-    ).grid(column=1, row=row_index, sticky=W, padx=2, pady=2)
-
-    row_index += 1
+    for i in range(100):
+        msg = str(i) + "Audio - Youtube ID: " + url.split("=")[1] + " Name: " + name
+        my_listbox.insert(END, msg)
     
     thread = DownloadThread(url, name, downloadMusic)
     threads.append(thread)
@@ -105,21 +94,8 @@ def myClickVideo():
     url = e1.get()
     name = e2.get()
 
-    msg = "Video - Youtube ID: " + url.split("=")[1]
-    Label (
-        contents, 
-        text=msg,
-        font=('Aerial 10 bold')
-    ).grid(column=0, row=row_index, sticky=W, padx=2, pady=2)
-
-    msg = "Name: " + name
-    Label (
-        contents, 
-        text=msg,
-        font=('Aerial 10 bold')
-    ).grid(column=1, row=row_index, sticky=W, padx=2, pady=2)
-
-    row_index += 1
+    msg = "Video - Youtube ID: " + url.split("=")[1] + " Name: " + name
+    my_listbox.insert(END, msg)
 
     thread = DownloadThread(url, name, downloadVideo)
     threads.append(thread)
@@ -134,19 +110,19 @@ Button (
     contents, 
     text='Quit', 
     command=root.quit
-).grid(row=3, column=0, sticky=NW, padx=2, pady=2)
+).grid(row=3, column=0, sticky=NW, padx=10, pady=2)
 
 Button (
     contents, 
     text='Download Audio', 
     command=myClickMusic
-).grid(row=3, column=1, sticky=NW,  padx=2, pady=2)
+).grid(row=3, column=1, sticky=NW,  padx=10, pady=2)
 
 Button (
     contents, 
     text='Download Video', 
     command=myClickVideo
-).grid(row=4, column=1, sticky=NW,  padx=2, pady=2)
+).grid(row=4, column=1, sticky=NW,  padx=10, pady=2)
 
 # ========== RUNNING ==========
 
