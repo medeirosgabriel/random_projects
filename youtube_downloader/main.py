@@ -75,9 +75,8 @@ def myClickMusic():
     url = e1.get()
     name = e2.get()
 
-    for i in range(100):
-        msg = str(i) + "Audio - Youtube ID: " + url.split("=")[1] + " Name: " + name
-        my_listbox.insert(END, msg)
+    msg = "Audio - Youtube ID: " + url.split("=")[1] + " Name: " + name
+    my_listbox.insert(END, msg)
     
     thread = DownloadThread(url, name, downloadMusic)
     threads.append(thread)

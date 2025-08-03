@@ -1,18 +1,14 @@
-import os
-#import youtube_dl
 import yt_dlp
-#from pytube import YouTube
 
 def downloadMusic(link, name):
 
-    directory = "./music/"
+    directory = "./music"
 
-    #download_directory =  directory + "{0}.{1}".format(name, "mp3")
-    download_directory =  directory + "{0}".format(name)
+    path =  f"{directory}/{name}"
 
     ydl_opts = {
         'format': 'bestaudio/best',
-        'outtmpl': download_directory,
+        'outtmpl': path,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -25,19 +21,19 @@ def downloadMusic(link, name):
         ydl.download(filenames)
 
 def downloadVideo(link, name):
-    output_path = './video/'
-    #yt = YouTube(link)
-    #video = yt.streams.get_highest_resolution()
-    #video.download(output_path)
+    download_directory = './video'
 
     video_info = yt_dlp.YoutubeDL().extract_info(
 		url = link, download = False
 	)
     
-    options = {
-		'outtmpl': f'{output_path}/{name}.mp4',
-        'format': 'best',  # Download the best available quality
-	}
+    path = f'{download_directory}/{name}.mp4'
+
+    ydl_opts = {
+        'outtmpl': path,
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]',
+        'merge_output_format': 'mp4',
+    }
     
-    with yt_dlp.YoutubeDL(options) as ydl:
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([video_info['webpage_url']])
